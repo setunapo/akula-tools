@@ -1,0 +1,35 @@
+[package]
+name = "akula-tools"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+bytes = { version = "1", features = ["serde"] }
+clap = { version = "3", features = ["derive"] }
+derive_more = "0.99"
+educe = { version = "0.4", features = ["Debug", "Default"] }
+ethereum-types = { version = "0.13", features = ["codec"] }
+ethnum = { version = "1", features = ["llvm-intrinsics", "rlp", "scale"] }
+fastrlp = { version = "0.1", features = [
+    "derive",
+    "ethereum-types",
+    "ethnum",
+    "std",
+] }
+fixed-hash = "0.7.0"
+hex = "0.4"
+hex-literal = "0.3"
+impl-serde = "0.3.1"
+toml = "0.5"
+parity-scale-codec = { version = "3", features = ["bytes"] }
+serde = "1"
+serde_json = "1"
+serde_with = "2"
+ron = "0.8"
+sha3 = "0.10"
+
+[patch.crates-io]
+ethnum = { git = "https://github.com/vorot93/ethnum-rs", branch = "impls" }
