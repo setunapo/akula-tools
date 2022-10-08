@@ -1,7 +1,11 @@
 # akula-tools
-a set of tools for akula in bsc.
+a set of tools for Akula in bsc.
 
-## install
+## export-bsc-genesis
+
+this tool only for Akula export chain spec file from BSC Geth's `genesis.json` and `config.toml` files.
+
+### install
 
 you can use `export-bsc-genesis` by `cargo install`.
 
@@ -13,7 +17,7 @@ The `export-bsc-genesis` in your cargo bin path. you can use it directly.
 
 > you could build from source, and execute it `./target/debug/export-bsc-genesis`.
 
-## usage
+### usage
 
 ```bash
 export-bsc-genesis --help
