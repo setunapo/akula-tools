@@ -1,9 +1,9 @@
-use std::collections::HashMap;
-use serde::{Deserialize, Serialize};
-use bytes::{Bytes};
-use ethereum_types::{Address, H256, U256};
-use crate::{util::*};
 use crate::models::chainspec::BlockNumber;
+use crate::util::*;
+use bytes::Bytes;
+use ethereum_types::{Address, H256, U256};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 #[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 pub struct ParliaConfig {
@@ -104,10 +104,6 @@ pub struct TomlP2P {
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct TomlNode {
-    #[serde(rename = "BLSPasswordFile")]
-    pub bls_password_file: String,
-    #[serde(rename = "BLSWalletDir")]
-    pub bls_wallet_dir: String,
     #[serde(rename = "P2P")]
     pub p2p: TomlP2P,
 }
@@ -120,8 +116,8 @@ pub struct TomlConfig {
 
 #[cfg(test)]
 mod tests {
-    use std::ops::Deref;
     use super::*;
+    use std::ops::Deref;
 
     #[test]
     fn parse_toml_config() {
@@ -135,8 +131,6 @@ HTTPVirtualHosts = ["localhost"]
 HTTPModules = ["personal", "db", "eth", "net", "web3", "txpool", "miner", "net", "parlia"]
 WSPort = 8547
 WSModules = ["net", "web3", "eth", "shh"]
-BLSPasswordFile = "/Users/jacksen/OtherProjects/bsc-deploy/clusterNode/node1/blspassword.txt"
-BLSWalletDir = "/Users/jacksen/OtherProjects/bsc-deploy/clusterNode/node1/bls/wallet"
 
 [Node.P2P]
 MaxPeers = 50
@@ -157,7 +151,6 @@ MaxBytesSize = 10485760
 Level = "info"
 FileRoot = """#;
         let conf: TomlConfig = toml::from_str(s).unwrap();
-        assert_eq!("/Users/jacksen/OtherProjects/bsc-deploy/clusterNode/node1/blspassword.txt", conf.node.bls_password_file);
         assert_eq!("enode://2e9ca9c58a47a80587c936b1a4846f84aa6ee5b31062321cd56684ff97957e12e3d867800ed9540201554754d1effed3e249d2c11835aba3bfebd0a19018c70d@127.0.0.1:30333", conf.node.p2p.static_nodes[0]);
         assert_eq!("enode://624e893ae9c9f7a1173e0a46501dacabe374f3ffab327e753f496ba2fe6b0e6fb10e90d9e00500623a2451d0bbf9d1e50fbfa7379f5280c71c88ca6ff7c22163@127.0.0.1:30336", conf.node.p2p.static_nodes[3]);
     }
